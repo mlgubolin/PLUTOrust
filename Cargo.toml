@@ -1,0 +1,6 @@
+[package]
+name = "PLUTOrust"
+version = "0.1.0"
+authors = ["Maria Lucia Gubolin <mlgubolin@protonmail.com>"]
+
+[dependencies]
