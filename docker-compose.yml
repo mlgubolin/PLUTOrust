@@ -1,0 +1,10 @@
+version: '3'
+services:
+  default:
+    build:
+      context: .
+    environment:
+      GEOMETRY: CARTESIAN
+      FIRST_AXIS: 10
+      SECOND_AXIS: 10
+      THIRD_AXIS: 10

@@ -10,9 +10,6 @@ struct gridUnity{
 }
  
 pub struct Grid{
-  firstAxis: u64,
-  secondAxis: u64,
-  thirdAxis: u64,
   grid: 
     [gridUnity,
       [firstAxis,
