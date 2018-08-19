@@ -1,5 +1,6 @@
 mod structs;
 
 fn main() {
-    let (grid, next_grid) = structs::grid::set_initial_condition();
+    let initial_grid = structs::grid::create_blank_grid();
+    let next_grid = structs::grid::create_blank_grid();
 }

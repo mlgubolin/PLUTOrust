@@ -1,8 +1,9 @@
-use std::collections::HashMap;
+extern crate fnv;
+
 use std::env;
 use std::vec::Vec;
 
-pub struct grid_unity {
+pub struct GridUnity {
   density: f64,
   x: f64,
   y: f64,
@@ -14,9 +15,9 @@ pub struct grid_unity {
   pression: f64,
 }
 
-impl grid_unity {
-  fn new() -> grid_unity {
-    return grid_unity {
+impl GridUnity {
+  fn new() -> GridUnity {
+    return GridUnity {
       density: 0.,
       x: 0.,
       y: 0.,
@@ -29,22 +30,22 @@ impl grid_unity {
     };
   }
 }
-pub fn set_initial_condition() -> (
-  HashMap<(u32, u32, u32), grid_unity>,
-  HashMap<(u32, u32, u32), grid_unity>,
-) {
-  let grid = create_blank_grid();
-  let next_grid = create_blank_grid();
-  return (grid, next_grid);
+pub fn set_initial_condition(
+  grid: fnv::FnvHashMap<(u32, u32, u32), GridUnity>,
+) -> fnv::FnvHashMap<(u32, u32, u32), GridUnity> {
+  get_axis_size();
+
+  return grid;
 }
 
-fn create_blank_grid() -> HashMap<(u32, u32, u32), grid_unity> {
-  let mut grid = HashMap::new();
+pub fn create_blank_grid() -> fnv::FnvHashMap<(u32, u32, u32), GridUnity> {
+  let mut grid = fnv::FnvHashMap::default();
   let axis_size = get_axis_size();
+
   for i in 0..axis_size[0] {
     for j in 0..axis_size[1] {
       for k in 0..axis_size[2] {
-        grid.insert((i, j, k), grid_unity::new());
+        grid.insert((i, j, k), GridUnity::new());
       }
     }
   }
@@ -62,6 +63,16 @@ fn get_axis_size() -> Vec<u32> {
 fn get_int_in_eniroment(input: &str) -> u32 {
   match env::var(input) {
     Ok(val) => val.to_string().parse::<u32>().unwrap(),
-    Err(e) => panic!(),
+    Err(e) => panic!(e),
+  }
+}
+
+fn run_all_cells(mut grid: fnv::FnvHashMap<(u32, u32, u32), GridUnity>, axis_size: Vec<u32>) {
+  for i in 0..axis_size[0] {
+    for j in 0..axis_size[1] {
+      for k in 0..axis_size[2] {
+        grid.insert((i, j, k), GridUnity::new());
+      }
+    }
   }
 }
