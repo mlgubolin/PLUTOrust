@@ -3,6 +3,6 @@ GluBHS means _GluBHS is not a Basic Hydrodynamic Software_ is a software written
 
 First, we shall make a simple hydrodynamic simulation and run it without errors. Then we can start to complicate stuff.
 
-- [ ] simple simulation
+- [ ] simple falling gas with constant initial density simulation
 - [ ] test its results
 - [ ] first 0.1 release
