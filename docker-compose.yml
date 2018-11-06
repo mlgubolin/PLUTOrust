@@ -8,3 +8,7 @@ services:
       FIRST_AXIS: 10
       SECOND_AXIS: 10
       THIRD_AXIS: 10
+      POTENTIAL: RADIAL
+
+      FINAL_TIME: 100
+      TIME_STEP: 1
