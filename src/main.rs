@@ -2,8 +2,11 @@ mod modules;
 use modules::grid;
 use modules::utils;
 extern crate fnv;
+use std::{thread, time};
+use std::fs::File;
+use std::io::prelude::*;
 
-fn main() {
+fn main() -> std::io::Result<()>{
     let next_grid = grid::create_blank_grid();
     let initial_grid = grid::set_initial_condition(init);
 
@@ -14,6 +17,12 @@ fn main() {
     while t < tf {
         t += time_step;
     }
+
+    let mut f = File::create("data/foo.txt")?;
+    f.write_all(b"Hello, world!")?;
+
+    f.sync_data()?;
+    Ok(())
 }
 
 //Function for inital conditions

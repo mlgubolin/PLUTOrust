@@ -4,7 +4,7 @@ services:
     build:
       context: .
     environment:
-      GEOMETRY: CARTESIAN
+      GEOMETRY: CARTEuIAN
       FIRST_AXIS: 10
       SECOND_AXIS: 10
       THIRD_AXIS: 10
@@ -12,3 +12,5 @@ services:
 
       FINAL_TIME: 100
       TIME_STEP: 1
+    volumes: 
+      - ./data:./data
