@@ -1,13 +1,13 @@
 mod modules;
 use modules::grid;
 use modules::utils;
+use modules::physics;
 extern crate fnv;
 use std::{thread, time};
 use std::fs::File;
 use std::io::prelude::*;
 
-fn main(){
-    let next_grid = grid::create_blank_grid();
+fn main() {
     let initial_grid = grid::set_initial_condition(init);
 
     let mut tf = utils::get_float_in_eniroment("FINAL_TIME");
@@ -15,6 +15,8 @@ fn main(){
     let mut t = 0.;
 
     while t < tf {
+        let next_grid = physics::calculations(initial_grid);
+        initial_grid = next_grid;
         t += time_step;
     }
 }
