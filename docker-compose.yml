@@ -1,10 +1,10 @@
-version: '3'
+version: '3.2'
 services:
   default:
     build:
       context: .
     environment:
-      GEOMETRY: CARTEuIAN
+      GEOMETRY: CARTESIAN
       FIRST_AXIS: 10
       SECOND_AXIS: 10
       THIRD_AXIS: 10
@@ -13,4 +13,9 @@ services:
       FINAL_TIME: 100
       TIME_STEP: 1
     volumes: 
-      - ./data:./data
+      - type: bind
+        source: /home/mlgubolin/workplace/GluBHS/src/data 
+        target: /code/src/data
+
+volumes:
+  glubhs_data:
