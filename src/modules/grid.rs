@@ -32,12 +32,20 @@ pub fn set_initial_condition(
   init: impl Fn() -> GridUnity,
 ) -> FnvHashMap<(u32, u32, u32), GridUnity> {
   let mut grid = FnvHashMap::default();
+  let x1_size = utils::get_float_in_eniroment("X1_SIZE");
+  let x2_size = utils::get_float_in_eniroment("X2_SIZE");
+  let x3_size = utils::get_float_in_eniroment("X3_SIZE");
 
   let axis_size = utils::get_axis_size();
   for i in 0..axis_size[0] {
     for j in 0..axis_size[1] {
       for k in 0..axis_size[2] {
-        let grid_unity = init();
+        let mut grid_unity = init();
+
+        grid_unity.x1 = x1_size * i as f64 / axis_size[0] as f64;
+        grid_unity.x2 = x2_size * i as f64 / axis_size[1] as f64;
+        grid_unity.x3 = x3_size * i as f64 / axis_size[2] as f64;
+
         grid.insert((i, j, k), grid_unity);
       }
     }
@@ -46,15 +54,15 @@ pub fn set_initial_condition(
   return grid;
 }
 
-pub fn create_blank_grid() -> FnvHashMap<(u32, u32, u32), GridUnity> {
-  let mut grid = FnvHashMap::default();
-  let axis_size = utils::get_axis_size();
-  for i in 0..axis_size[0] {
-    for j in 0..axis_size[1] {
-      for k in 0..axis_size[2] {
-        grid.insert((i, j, k), GridUnity::new());
-      }
-    }
-  }
-  return grid;
-}
+// pub fn create_blank_grid() -> FnvHashMap<(u32, u32, u32), GridUnity> {
+//   let mut grid = FnvHashMap::default();
+//   let axis_size = utils::get_axis_size();
+//   for i in 0..axis_size[0] {
+//     for j in 0..axis_size[1] {
+//       for k in 0..axis_size[2] {
+//         grid.insert((i, j, k), GridUnity::new());
+//       }
+//     }
+//   }
+//   return grid;
+// }

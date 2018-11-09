@@ -9,6 +9,10 @@ services:
       SECOND_AXIS: 10
       THIRD_AXIS: 10
       POTENTIAL: RADIAL
+      
+      X1_SIZE: 10
+      X2_SIZE: 10
+      X3_SIZE: 10
 
       FINAL_TIME: 100
       TIME_STEP: 1

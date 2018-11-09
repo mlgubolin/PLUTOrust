@@ -3,15 +3,12 @@ use modules::grid;
 use modules::utils;
 use modules::physics;
 extern crate fnv;
-use std::{thread, time};
-use std::fs::File;
-use std::io::prelude::*;
 
 fn main() {
-    let initial_grid = grid::set_initial_condition(init);
+    let mut initial_grid = grid::set_initial_condition(init);
 
-    let mut tf = utils::get_float_in_eniroment("FINAL_TIME");
-    let mut time_step = utils::get_float_in_eniroment("TIME_STEP");
+    let tf = utils::get_float_in_eniroment("FINAL_TIME");
+    let time_step = utils::get_float_in_eniroment("TIME_STEP");
     let mut t = 0.;
 
     while t < tf {
@@ -23,7 +20,7 @@ fn main() {
 
 //Function for inital conditions
 fn init() -> grid::GridUnity {
-    let grid = grid::GridUnity {
+    let mut grid = grid::GridUnity {
         density: 1.,
         x1: 0.,
         x2: 0.,
