@@ -19,19 +19,19 @@ fn main() {
 }
 
 //Function for inital conditions
-fn init() -> grid::GridUnity {
-    let mut grid = grid::GridUnity {
-        density: 1.,
-        x1: 0.,
-        x2: 0.,
-        x3: 0.,
-        vx1: 0.,
-        vx2: 0.,
-        vx3: 0.,
-        temperature: 0.,
-        pression: 0.,
-    };
+fn init(x1: f64, x2: f64, x3: f64) -> grid::GridUnity {
 
+  let grid = grid::GridUnity {
+    density: 1.,
+    x1: x1,
+    x2: x2,
+    x3: x3,
+    vx1: 0.,
+    vx2: 0.,
+    vx3: 0.,
+    temperature: 0.,
+    pression: 0.,
+  };
     return grid;
 }
 
