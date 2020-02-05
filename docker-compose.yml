@@ -9,6 +9,7 @@ services:
       SECOND_AXIS: 10
       THIRD_AXIS: 10
       POTENTIAL: RADIAL
+      RUST_BACKTRACE: 1
       
       X1_SIZE: 10
       X2_SIZE: 10
@@ -18,7 +19,7 @@ services:
       TIME_STEP: 1
     volumes: 
       - type: bind
-        source: /home/mlgubolin/workplace/GluBHS/src/data 
+        source: /Users/mlgubolin/workplace/GluBHS/src/data 
         target: /code/src/data
 
 volumes:

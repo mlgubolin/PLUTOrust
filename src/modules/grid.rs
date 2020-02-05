@@ -31,13 +31,15 @@ pub struct GridUnity {
 
 pub fn set_initial_condition(
   init: impl Fn(f64, f64, f64) -> GridUnity,
-) -> FnvHashMap<(u32, u32, u32), GridUnity> {
+) -> (FnvHashMap<(u32, u32, u32), GridUnity>,u32) {
   let mut grid = FnvHashMap::default();
   let axis_size = utils::get_axis_size();
 
   let x1_size = utils::get_float_in_eniroment("X1_SIZE");
   let x2_size = utils::get_float_in_eniroment("X2_SIZE");
   let x3_size = utils::get_float_in_eniroment("X3_SIZE");
+
+  
 
   for i in 0..(axis_size[0]+4) {
     for j in 0..(axis_size[1]+4) {
@@ -52,7 +54,7 @@ pub fn set_initial_condition(
     }
   }
 
-  return grid;
+  return (grid,axis_size[0]);
 }
 
 // pub fn create_blank_grid() -> FnvHashMap<(u32, u32, u32), GridUnity> {

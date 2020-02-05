@@ -1,26 +1,26 @@
 mod modules;
 use modules::grid;
-use modules::utils;
 use modules::physics;
+use modules::utils;
 extern crate fnv;
 
 fn main() {
-    let mut initial_grid = grid::set_initial_condition(init);
+  let (mut initial_grid, size) = grid::set_initial_condition(init);
 
-    let tf = utils::get_float_in_eniroment("FINAL_TIME");
-    let time_step = utils::get_float_in_eniroment("TIME_STEP");
-    let mut t = 0.;
+  let tf = utils::get_float_in_eniroment("FINAL_TIME");
+  let time_step = utils::get_float_in_eniroment("TIME_STEP");
+  let mut t = 0.;
 
-    while t < tf {
-        let next_grid = physics::calculations(initial_grid);
-        initial_grid = next_grid;
-        t += time_step;
-    }
+  while t < tf {
+    let next_grid = physics::calculations(initial_grid, size);
+    initial_grid = next_grid;
+    //save
+    t += time_step;
+  }
 }
 
 //Function for inital conditions
 fn init(x1: f64, x2: f64, x3: f64) -> grid::GridUnity {
-
   let grid = grid::GridUnity {
     density: 1.,
     x1: x1,
@@ -32,7 +32,7 @@ fn init(x1: f64, x2: f64, x3: f64) -> grid::GridUnity {
     temperature: 0.,
     pression: 0.,
   };
-    return grid;
+  return grid;
 }
 
 //Function for potential

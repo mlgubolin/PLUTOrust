@@ -1,8 +1,12 @@
 use fnv::FnvHashMap;
 use grid::GridUnity;
 
-pub fn calculations(initial_grid: FnvHashMap<(u32, u32, u32), GridUnity>)
- ->FnvHashMap<(u32, u32, u32), GridUnity>{
-
-     return initial_grid;
- }
+pub fn calculations(
+    initial_grid: FnvHashMap<(u32, u32, u32), GridUnity>,
+    size: u32,
+) -> FnvHashMap<(u32, u32, u32), GridUnity> {
+    for i in 0..size {
+        
+    }
+    return initial_grid;
+}

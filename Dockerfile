@@ -1,4 +1,4 @@
-FROM rust:latest
+FROM rust:1.41.0
 ADD . /code
 CMD ["mkdir","./data"]
 CMD [ "docker volume create","~/data:~/data" ]
