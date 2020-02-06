@@ -13,7 +13,7 @@ fn main() {
   let mut t = 0.;
 
   while t < tf {
-    let next_grid = physics::calculations(initial_grid, size);
+    let next_grid = physics::calculations(initial_grid, size.clone(), time_step);
     initial_grid = next_grid;
     //save
     t += time_step;

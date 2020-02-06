@@ -13,25 +13,9 @@ pub struct GridUnity {
   pub pression: f64,
 }
 
-// impl GridUnity {
-//   fn new() -> GridUnity {
-//     return GridUnity {
-//       density: 0.,
-//       x1: 0.,
-//       x2: 0.,
-//       x3: 0.,
-//       vx1: 0.,
-//       vx2: 0.,
-//       vx3: 0.,
-//       temperature: 0.,
-//       pression: 0.,
-//     };
-//   }
-// }
-
 pub fn set_initial_condition(
   init: impl Fn(f64, f64, f64) -> GridUnity,
-) -> (FnvHashMap<(u32, u32, u32), GridUnity>,u32) {
+) -> (FnvHashMap<(u32, u32, u32), GridUnity>, Vec<u32>) {
   let mut grid = FnvHashMap::default();
   let axis_size = utils::get_axis_size();
 
@@ -39,33 +23,24 @@ pub fn set_initial_condition(
   let x2_size = utils::get_float_in_eniroment("X2_SIZE");
   let x3_size = utils::get_float_in_eniroment("X3_SIZE");
 
-  
-
-  for i in 0..(axis_size[0]+4) {
-    for j in 0..(axis_size[1]+4) {
-      for k in 0..(axis_size[2]+4) {
-        let x1 = x1_size * (i-2) as f64;
-        let x2 = x2_size * (j-2) as f64;
-        let x3 = x3_size * (k-2) as f64;
-        let grid_unity = init(x1,x2,x3);
+  for i in 0..(axis_size[0] + 4) {
+    for j in 0..(axis_size[1] + 4) {
+      for k in 0..(axis_size[2] + 4) {
+        let x1 = x1_size * (i - 2) as f64;
+        let x2 = x2_size * (j - 2) as f64;
+        let x3 = x3_size * (k - 2) as f64;
+        let grid_unity = init(x1, x2, x3);
 
         grid.insert((i, j, k), grid_unity);
       }
     }
   }
 
-  return (grid,axis_size[0]);
+  return (grid, axis_size);
 }
 
-// pub fn create_blank_grid() -> FnvHashMap<(u32, u32, u32), GridUnity> {
-//   let mut grid = FnvHashMap::default();
-//   let axis_size = utils::get_axis_size();
-//   for i in 0..axis_size[0] {
-//     for j in 0..axis_size[1] {
-//       for k in 0..axis_size[2] {
-//         grid.insert((i, j, k), GridUnity::new());
-//       }
-//     }
-//   }
-//   return grid;
-// }
+pub fn grid_unity_to_grid_parameters(grid: GridUnity) -> cip_rust::GridParameters {
+  let positions = vec!(grid.x1,grid.x2,grid.x3);
+  let velocities = vec!(grid.vx1,grid.vx2,grid.vx3);s
+
+}
