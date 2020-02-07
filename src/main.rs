@@ -2,8 +2,8 @@ mod modules;
 use modules::grid;
 use modules::physics;
 use modules::utils;
-extern crate fnv;
 extern crate cip_rust;
+extern crate ndarray;
 
 fn main() {
   let (mut initial_grid, size) = grid::set_initial_condition(init);

@@ -1,5 +1,6 @@
-use fnv::FnvHashMap;
 use modules::utils;
+use ndarray::Array3;
+use std::collections::HashMap;
 
 pub struct GridUnity {
   pub density: f64,
@@ -15,9 +16,9 @@ pub struct GridUnity {
 
 pub fn set_initial_condition(
   init: impl Fn(f64, f64, f64) -> GridUnity,
-) -> (FnvHashMap<(u32, u32, u32), GridUnity>, Vec<u32>) {
-  let mut grid = FnvHashMap::default();
+) -> (HashMap<(u32, u32, u32), GridUnity>, Vec<u32>) {
   let axis_size = utils::get_axis_size();
+  let mut grid : Array3<GridUnity>, size;
 
   let x1_size = utils::get_float_in_eniroment("X1_SIZE");
   let x2_size = utils::get_float_in_eniroment("X2_SIZE");
@@ -31,16 +32,10 @@ pub fn set_initial_condition(
         let x3 = x3_size * (k - 2) as f64;
         let grid_unity = init(x1, x2, x3);
 
-        grid.insert((i, j, k), grid_unity);
+        grid[(i, j, k)] =  grid_unity;
       }
     }
   }
 
   return (grid, axis_size);
-}
-
-pub fn grid_unity_to_grid_parameters(grid: GridUnity) -> cip_rust::GridParameters {
-  let positions = vec!(grid.x1,grid.x2,grid.x3);
-  let velocities = vec!(grid.vx1,grid.vx2,grid.vx3);s
-
 }
