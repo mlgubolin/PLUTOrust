@@ -8,5 +8,5 @@ name = "glubhs"
 path = "src/main.rs"
 
 [dependencies]
-ndarray = "0.13.0"
+multiarray = "0.1.3"
 cip_rust = "0.9.8"

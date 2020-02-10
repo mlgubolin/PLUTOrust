@@ -3,7 +3,8 @@ use modules::grid;
 use modules::physics;
 use modules::utils;
 extern crate cip_rust;
-extern crate ndarray;
+extern crate multiarray;
+
 
 fn main() {
   let (mut initial_grid, size) = grid::set_initial_condition(init);
@@ -13,7 +14,7 @@ fn main() {
   let mut t = 0.;
 
   while t < tf {
-    let next_grid = physics::calculations(initial_grid, size.clone(), time_step);
+    let next_grid = physics::calculations(initial_grid, &size, time_step);
     initial_grid = next_grid;
     //save
     t += time_step;
@@ -31,7 +32,7 @@ fn init(x1: f64, x2: f64, x3: f64) -> grid::GridUnity {
     vx2: 0.,
     vx3: 0.,
     temperature: 0.,
-    pression: 0.,
+    pressure: 0.,
   };
   return grid;
 }
