@@ -61,9 +61,9 @@ pub fn set_initial_condition(
   let x2_size = utils::get_float_in_eniroment("X2_SIZE");
   let x3_size = utils::get_float_in_eniroment("X3_SIZE");
 
-  for i in 0..(axis_size[0] + 4) {
-    for j in 0..(axis_size[1] + 4) {
-      for k in 0..(axis_size[2] + 4) {
+  for i in 2..(axis_size[0] + 4) {
+    for j in 2..(axis_size[1] + 4) {
+      for k in 2..(axis_size[2] + 4) {
         let x1 = x1_size * (i - 2) as f64;
         let x2 = x2_size * (j - 2) as f64;
         let x3 = x3_size * (k - 2) as f64;
